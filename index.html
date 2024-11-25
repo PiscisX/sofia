@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Mejor Amiga</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .question {
+            font-size: 1.8rem;
+            margin: 20px 0;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            background-color: #ff69b4;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+        }
+
+        .poem, .muack, .sadMessage {
+            display: none;
+            font-size: 1.5rem;
+            white-space: pre-wrap;
+        }
+
+        .poem {
+            font-size: 1.2rem;
+            animation: scrollUp 10s linear;
+        }
+
+        .muack {
+            font-size: 5rem;
+            color: pink;
+            animation: grow 2s ease-in-out forwards;
+        }
+
+        .sadMessage {
+            font-size: 4rem;
+            color: red;
+        }
+
+        @keyframes grow {
+            0% { transform: scale(0); }
+            100% { transform: scale(10); opacity: 0; }
+        }
+
+        @keyframes scrollUp {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(-100%); }
+        }
+
+        .sadMessage {
+            font-size: 4rem;
+            color: red;
+            animation: sadAnimation 3s forwards;
+        }
+
+        @keyframes sadAnimation {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Fondo de la pantalla */
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="background" id="background"></div>
+    <div class="container" id="container">
+        <div class="title">Hola Sofi linda, cree esta página para recordarte que no debes preocuparte por ningún weón que no te ame, siempre serás mi amika y tqm.</div>
+        <div class="question">¿Tú me quieres?</div>
+
+        <div class="buttons">
+            <button id="yes">Sí</button>
+            <button id="no">No</button>
+        </div>
+
+        <div class="poem" id="poem">
+            Una linda noche y un bello horizonte,<br>
+            nada se compara a tu belleza natural,<br>
+            una niña con futuro, una niña sin igual.<br><br>
+            En este tiempo de amistad fuiste la mejor amiga que pude encontrar,<br>
+            gracias por estar en mi vida y siempre te voy a amar,<br>
+            ojalá tengas una linda noche, descanses y duermas en paz,<br>
+            ya que siempre vas a tener un mejor amigo que te querrá sin igual.
+        </div>
+
+        <div class="muack" id="muack">¡Muaack!</div>
+
+        <div class="sadMessage" id="sadMessage">:(</div>
+    </div>
+
+    <script>
+        const btnYes = document.getElementById('yes');
+        const btnNo = document.getElementById('no');
+        const poem = document.getElementById('poem');
+        const muack = document.getElementById('muack');
+        const sadMessage = document.getElementById('sadMessage');
+        const container = document.getElementById('container');
+        const background = document.getElementById('background');
+
+        function showPoem() {
+            container.style.display = 'none'; // Oculta el menú principal
+            background.style.display = 'none'; // Oculta el fondo negro
+            poem.style.display = 'block'; // Muestra el poema
+
+            setTimeout(() => {
+                poem.style.display = 'none'; // Oculta el poema después de 10 segundos
+                muack.style.display = 'block'; // Muestra "Muaack!"
+                
+                setTimeout(() => {
+                    location.reload(); // Regresa al menú principal después de 2 segundos
+                }, 2000);
+            }, 10000); // Muestra el poema durante 10 segundos
+        }
+
+        function showSadMessage() {
+            container.style.display = 'none'; // Oculta el menú principal
+            background.style.display = 'none'; // Oculta el fondo negro
+            sadMessage.style.display = 'block'; // Muestra ":("
+
+            setTimeout(() => {
+                sadMessage.style.display = 'none'; // Oculta ":("
+                location.reload(); // Regresa al menú principal después de 3 segundos
+            }, 3000); // Muestra ":(" durante 3 segundos
+        }
+
+        // Cuando se hace clic en "Sí"
+        btnYes.addEventListener('click', () => {
+            showPoem(); // Muestra el poema
+        });
+
+        // Cuando se hace clic en "No"
+        btnNo.addEventListener('click', () => {
+            showSadMessage(); // Muestra ":("
+        });
+    </script>
+</body>
+</html>
